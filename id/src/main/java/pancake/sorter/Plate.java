@@ -11,11 +11,17 @@ public class Plate {
     }
 
     public Plate(List<Pancake> pancakes){
+        // todo check
         this.pancakes = pancakes;
     }
 
     public boolean addPancake(Pancake pancake){
+        // todo check
         return this.pancakes.add(pancake);
+    }
+
+    public void sort(){
+        // todo sort
     }
 
 }
