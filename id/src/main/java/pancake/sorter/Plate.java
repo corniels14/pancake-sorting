@@ -1,6 +1,7 @@
 package pancake.sorter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Plate {
@@ -24,7 +25,30 @@ public class Plate {
     }
 
     public void sort(){
-        // todo sort
+        for (int curr_size = this.pancakes.size(); curr_size > 1; --curr_size){
+            int biggest_index = findBiggestPancake(curr_size);
+
+            if (biggest_index != curr_size-1){
+                flip(biggest_index+1);
+                flip(curr_size);
+            }
+        }
+    }
+
+    private void flip(int i){
+        List<Pancake> stack = this.pancakes.subList(0, i);
+        Collections.reverse(stack);
+        for (int j = 0; j < stack.size(); j++) {
+            this.pancakes.set(j, stack.get(j));
+        }
+    }
+
+    private int findBiggestPancake(int i){
+        int max, j;
+        for (max = 0, j = 0; j < i; ++j)
+            if (this.pancakes.get(j).diameter > this.pancakes.get(max).diameter)
+                max = j;
+        return max;
     }
 
     private boolean pancakeWithDiameterNew(int diameter){
@@ -43,6 +67,7 @@ public class Plate {
         for (int i = 0; i < this.pancakes.size(); i++) {
             System.out.printf("%d ", this.pancakes.get(i).diameter);
         }
+        System.out.println("");
     }
 
 }

@@ -34,23 +34,27 @@ class AppTest {
 
     @Test
     void pancakesSortCorrectly() {
+        // prepare
         Plate plate = new Plate();
         for (int i = 1; i <= 25; i++) {
             Pancake p = new Pancake(i);
             plate.addPancake(p);
         }
         Collections.shuffle(plate.pancakes);
-        plate.sort();
 
+        // sort
+        plate.print();
+        plate.sort();
+        plate.print();
+
+        // check
         int previous = -1;
         boolean success = true;
 
         for (int i = 0; i < plate.pancakes.size(); i++){
             int currentSize = plate.pancakes.get(i).diameter;
 
-            System.out.println(currentSize);
-
-            if (currentSize > previous && previous != -1){
+            if (currentSize < previous){
                 success = false;
                 break;
             }
@@ -58,7 +62,7 @@ class AppTest {
             previous = currentSize;
         }
 
-        assertEquals(success, true);
+        assertEquals(true, success);
     }
     
 }
