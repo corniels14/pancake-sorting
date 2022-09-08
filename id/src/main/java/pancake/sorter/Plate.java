@@ -39,4 +39,10 @@ public class Plate {
         return this.pancakes.size() < this.maximumPancakes;
     }
 
+    public void print(){
+        for (int i = 0; i < this.pancakes.size(); i++) {
+            System.out.printf("%d ", this.pancakes.get(i).diameter);
+        }
+    }
+
 }
